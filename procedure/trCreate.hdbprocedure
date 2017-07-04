@@ -1,0 +1,63 @@
+PROCEDURE "SERVICE_MANAGEMENT_SYSTEM"."sms.procedure::trCreate" (
+	IN tr_details "SERVICE_MANAGEMENT_SYSTEM"."sms.data::Procedure.TR",
+	OUT error "SERVICE_MANAGEMENT_SYSTEM"."sms.data::Procedure.errors"
+ ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER AS
+	--DEFAULT SCHEMA <default_schema_name>
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+ 
+ DECLARE lv_desription STRING;
+ DECLARE lv_country STRING;
+ DECLARE lv_street_name STRING;
+ DECLARE lv_street_num STRING;
+ DECLARE lv_state STRING;
+ DECLARE lv_region STRING;
+ DECLARE lv_apartment STRING;
+ DECLARE lv_latitude DOUBLE;
+ DECLARE lv_longitude DOUBLE;
+ DECLARE lv_location INTEGER;
+ DECLARE task_id INTEGER;
+ DECLARE location_id INTEGER;
+ 
+ SELECT TASK_ID, LOCATION_ID, DESCRIPTION, COUNTRY, STREET_NAME, STREET_NUM, STATE, REGION, APARTMENT, LATITUDE,
+ 	LONGITUDE
+     INTO task_id, location_id, lv_desription,
+          lv_country, lv_street_name, lv_street_num, lv_state, lv_region, lv_apartment, lv_latitude,
+          lv_longitude FROM :tr_details;
+ 
+ IF :lv_desription = '' THEN
+ 	error = SELECT 500 AS http_status_code, 
+               'Invalid Service Request ' || lv_desription AS error_message, 
+                     'Service Request should have service details.' AS detail FROM dummy;
+ 
+ ELSEIF :lv_latitude = null THEN
+ 	error = SELECT 500 AS http_status_code, 
+               'Invalid Latitude Value ' || lv_latitude AS error_message, 
+                     'Latitude must not be empty' AS detail FROM dummy;
+ 
+ ELSEIF :lv_longitude = null THEN
+ 	error = SELECT 500 AS http_status_code, 
+               'Invalid Longitude Value ' || lv_longitude AS error_message, 
+                     'Longitude must not be empty' AS detail FROM dummy;
+ ELSE 
+	 SELECT ID INTO lv_location FROM "SERVICE_MANAGEMENT_SYSTEM"."sms.data::TR.TaskLocation" WHERE LATITUDE = lv_latitude AND LONGITUDE = lv_longitude;
+
+	 IF :lv_location = '' THEN
+	 	INSERT INTO "sms.data::TR.TaskLocation"
+	             values ("sms.data::locationId".NEXTVAL, lv_country, lv_street_name, lv_street_num, lv_state, lv_region, lv_apartment, lv_latitude,
+	          lv_longitude);  
+	    SELECT "sms.data::locationId".CURRVAL INTO lv_location from DUMMY;
+	 END IF;
+	 
+	 
+	  INSERT INTO "sms.data::TR.TaskRequest"
+	             values ("sms.data::taskId".NEXTVAL, lv_desription, lv_location,
+	          now(), '');
+	 
+ END IF;  
+ 
+END;

@@ -1,0 +1,34 @@
+<mvc:View controllerName="sms.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.f.semantic">
+	<semantic:SemanticPage id="page" showNavButton="true" navButtonPress="onNavBack" headerPinnable="false" toggleHeaderOnTitleClick="false" busy="{objectView>/busy}" 
+		busyIndicatorDelay="{objectView>/delay}">
+		<semantic:titleHeading>
+			<Title text="{TASK_DESCRIPTION}" />
+		</semantic:titleHeading>
+		<semantic:headerContent>
+			<FlexBox alignItems="Start" justifyContent="SpaceBetween">
+				<items>
+					<Panel backgroundDesign="Transparent">
+						<content>
+							<ObjectAttribute visible="false" id="latitude" text="{LATITUDE}"/>
+							<ObjectAttribute visible="false" id="longitude" text="{LONGITUDE}"/>
+							<ObjectAttribute  title="Status" text="{TASK_STATUS}"/>
+							<ObjectAttribute  title="Address" text="
+							{ parts: [ {path: 'STREET_NUM'}, {path: 'STREET_NAME'}, {path: 'STATE'}, {path: 'COUNTRY'} ], formatter : '.formatter.address' }
+							"/>
+						</content>
+					</Panel>
+				</items>
+			</FlexBox>
+		</semantic:headerContent>
+		<semantic:titleCustomTextActions>
+			<Button icon="sap-icon://nav-back" press="returnToWorkList"/>
+		</semantic:titleCustomTextActions>
+		<semantic:titleMainAction>
+			<semantic:TitleMainAction press="editServiceRequest"  text="Edit"/>
+		</semantic:titleMainAction>
+		<semantic:content>
+			<HBox id="service-detail-map"  fitContainer="true" justifyContent="SpaceAround"  alignItems="Center" alignContent="SpaceAround" height="50%" width="100%">
+			</HBox>
+		</semantic:content>
+	</semantic:SemanticPage>
+</mvc:View>

@@ -1,0 +1,20 @@
+service  { 
+		
+   "sms.data::TR.TaskRequest" as "TaskRequest"
+	   create  
+	       using "sms.procedure::trCreate";
+	                    
+	"sms.data::TR.TaskLocation" as "TaskLocation"	
+	 navigates ("TASK_LOCATION" as "Tasks");
+	 
+	//Association between TaskRequest and TaskLocation
+    association "TASK_LOCATION" principal "TaskLocation"("ID") 
+     multiplicity "1" dependent "TaskRequest"("ID") multiplicity "*"; 
+     
+}
+
+
+settings {
+    metadata cache-control "max-age= 604800";
+}
+  

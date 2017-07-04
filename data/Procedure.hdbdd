@@ -1,0 +1,45 @@
+namespace sms.data;
+
+@Schema: 'SERVICE_MANAGEMENT_SYSTEM'
+context Procedure {
+
+    	type SR { 
+    		DESCRIPTION: String(500);
+			STATUS_ID: Integer;
+			SERVICE_TYPE_ID: Integer;
+			CUSTOMER_ID: Integer;
+			SERVICE_CATEGORY_ID: Integer;
+			TASK_REQUESTED_DATE: LocalDate;
+			COUNTRY: String(50);
+			STREET_NAME: String(100);
+			STREET_NUM: String(5);
+			STATE: String(50);
+			REGION: String(50);
+			APARTMENT: String(50);
+			ADDRESS: String(200);
+	        LATITUDE: Double;
+	        LONGITUDE: Double; 
+	        POINT: hana.ST_POINT;
+    	}
+    	
+    	type TR { 
+    		TASK_ID: Integer;
+    		LOCATION_ID: Integer;
+    		DESCRIPTION: String(500);
+			COUNTRY: String(50);
+			STREET_NAME: String(100);
+			STREET_NUM: String(5);
+			STATE: String(50);
+			REGION: String(50);
+			APARTMENT: String(50);
+	        LATITUDE: Double;
+	        LONGITUDE: Double; 
+    	}
+    	
+		type errors {
+			HTTP_STATUS_CODE: Integer;
+			ERROR_MESSAGE: String(100);
+			DETAIL: String(100);
+		};
+	
+};

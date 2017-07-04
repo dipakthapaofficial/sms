@@ -1,0 +1,78 @@
+<mvc:View controllerName="sms.controller.Worklist" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.f.semantic" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+	<semantic:SemanticPage id="page" headerPinnable="false" toggleHeaderOnTitleClick="false">
+		<semantic:titleHeading>
+			<Title id="titleId" text="{i18n>worklistTitle}"/>
+		</semantic:titleHeading>
+		<semantic:content>
+			<IconTabBar select="showEvent" expandable="false" id="idTopLevelIconTabBar" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="simpleView" text="{i18n>simpleView}">
+						<PullToRefresh id="pullToRefresh" refresh="onRefresh"/>
+						<Table id="table" width="auto" items="{ path: '/TaskDetails', sorter: { path: 'TASK_DESCRIPTION', descending: false } }"
+							noDataText="{worklistView>/tableNoDataText}" busyIndicatorDelay="{worklistView>/tableBusyDelay}" growing="true" growingThreshold="5"
+							growingScrollToLoad="false" updateFinished="onUpdateFinished">
+							<headerToolbar>
+								<Toolbar>
+									<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+									<ToolbarSpacer/>
+									<SearchField id="searchField" tooltip="{i18n>worklistSearchTooltip}" search="onSearch" width="auto"></SearchField>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column id="nameColumn">
+									<Text text="{i18n>tableNameColumnTitle}" id="nameColumnTitle"/>
+								</Column>
+								<Column id="latitudeColumn" visible="true" hAlign="End">
+									<Text text="{i18n>address}" id="latitudeColumnTitle"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem type="Navigation" press="onPress">
+									<cells>
+										<ObjectIdentifier text="{TASK_DESCRIPTION}"/>
+										<ObjectIdentifier
+											text=" { parts: [ {path: 'STREET_NUM'}, {path: 'STREET_NAME'}, {path: 'STATE'}, {path: 'COUNTRY'} ], formatter : '.formatter.address' } "/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter id="spatialView" text="{i18n>spatialView}" select="displayMap">
+						<content class="sapUiContentPadding">
+							<l:Grid defaultSpan="S12" position="Left" >
+								<l:content>
+									<f:SimpleForm>
+										<f:content>
+											<Label text="Radius"/>
+											<Input  type="Number"/>
+											<Select id="units">
+												<items>
+													<core:Item text="Miles" key="Miles"/>
+													<core:Item text="Kilometers" key="Kilometers"/>
+													<core:Item text="Meters" key="Meters"/>
+													<core:Item text="Feet" key="Feets"/>
+												</items>
+											</Select>
+										</f:content>
+									</f:SimpleForm>	
+								</l:content>
+							</l:Grid>
+							<VBox id="worklist-map" visible="true" height="400px" width="100%" fitContainer="true" class="sapUiSmallMargin" justifyContent="Center"
+								alignItems="Center">
+							</VBox>	
+							<Link id="loadTaskDetail" class="sapUiSmallMarginTopBottom" visible="false" textAlign="Center" text="{i18n>viewAll}" press="viewAll" width="100%" emphasized="true" />	
+							<Link id="lazyLoadTaskDetail" class="sapUiSmallMarginTopBottom" textAlign="Center" text="{i18n>more}" press="getTaskDetails" width="100%" emphasized="true" />
+						</content>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</semantic:content>
+		<!--	<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>-->
+		<semantic:titleCustomIconActions>
+			<Button icon="sap-icon://create" press="onCreateButtonPress" type="Emphasized" text="{i18n>create}" />
+		</semantic:titleCustomIconActions>
+	</semantic:SemanticPage>
+</mvc:View>

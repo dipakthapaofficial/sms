@@ -1,0 +1,7 @@
+role sms.role::APP_ADMIN
+{
+catalog sql object "SERVICE_MANAGEMENT_SYSTEM"."sms.data::Person.Person": //Objecttype: TABLE
+	ALTER, DROP, SELECT, INSERT, UPDATE, DELETE, INDEX, TRIGGER, REFERENCES;
+
+
+}

@@ -1,0 +1,7 @@
+role sms.role::APP_USER
+{
+catalog sql object "SERVICE_MANAGEMENT_SYSTEM"."sms.data::Person.Person": //Objecttype: TABLE
+	SELECT, INSERT, UPDATE;
+
+
+}

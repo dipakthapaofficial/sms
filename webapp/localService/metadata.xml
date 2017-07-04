@@ -1,0 +1,40 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" Version="1.0">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="2.0">
+        <Schema
+            xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="sms.service.task">
+            <EntityType Name="TaskDetailsType">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+                <Property Name="TASK_STATUS_ID" Type="Edm.Int32"/>
+                <Property Name="TASK_STATUS" Type="Edm.String" MaxLength="30"/>
+                <Property Name="TASK_DESCRIPTION" Type="Edm.String" MaxLength="500"/>
+                <Property Name="LOCATION_ID" Type="Edm.Int32"/>
+                <Property Name="CUSTOMER_ID" Type="Edm.Int32"/>
+                <Property Name="TASK_REQUESTED_DATE" Type="Edm.DateTime"/>
+                <Property Name="CREATED_DATE" Type="Edm.DateTime"/>
+                <Property Name="MODIFIED_DATE" Type="Edm.DateTime"/>
+                <Property Name="SERVICE_TYPE_ID" Type="Edm.Int32"/>
+                <Property Name="SERVICE_TYPE" Type="Edm.String" MaxLength="30"/>
+                <Property Name="SERVICE_CATEGORY_ID" Type="Edm.Int32"/>
+                <Property Name="SERVICE_CATEGORY" Type="Edm.String" MaxLength="50"/>
+                <Property Name="COUNTRY" Type="Edm.String" MaxLength="50"/>
+                <Property Name="STREET_NAME" Type="Edm.String" MaxLength="100"/>
+                <Property Name="STREET_NUM" Type="Edm.String" MaxLength="5"/>
+                <Property Name="REGION" Type="Edm.String" MaxLength="50"/>
+                <Property Name="APARTMENT" Type="Edm.String" MaxLength="50"/>
+                <Property Name="LATITUDE" Type="Edm.Double"/>
+                <Property Name="LONGITUDE" Type="Edm.Double"/>
+                <Property Name="STATE" Type="Edm.String" MaxLength="50"/>
+            </EntityType>
+            <EntityContainer Name="task" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="TaskDetails" EntityType="sms.service.task.TaskDetailsType"/>
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

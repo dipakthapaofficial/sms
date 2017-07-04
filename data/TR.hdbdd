@@ -1,0 +1,30 @@
+namespace sms.data;
+
+@Schema: 'SERVICE_MANAGEMENT_SYSTEM'
+context TR {
+
+    @Catalog.tableType : #COLUMN 
+    Entity TaskRequest {
+        key ID: Integer;
+        TASK_DESCRIPTION: String(500);
+		LOCATION_ID: Integer;
+		CREATED_DATE: UTCTimestamp;
+		MODIFIED_DATE: UTCTimestamp;
+        LOCATION: Association[1] to TaskLocation on LOCATION.ID = LOCATION_ID;
+    };
+    
+    @Catalog.tableType : #COLUMN 
+    Entity TaskLocation {
+        key ID: Integer;
+		COUNTRY: String(50);
+		STREET_NAME: String(100);
+		STREET_NUM: String(5);
+		STATE: String(50);
+		REGION: String(50);
+		APARTMENT: String(50);
+        LATITUDE: Double;
+        LONGITUDE: Double; 
+        TASKS: Association[*] to TaskRequest on TASKS.LOCATION_ID = ID;
+    };
+    
+};

@@ -1,0 +1,26 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="sms.controller.Create"
+	xmlns:f="sap.ui.layout.form" xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true">
+	<App>
+		<pages>
+			<Page title="{= ${task>/ID} === '' ? ${i18n>createServiceRequest} : ${i18n>updateServiceRequest}}" showNavButton="true" navButtonPress="navBack">
+				<content class="sapUiContentPadding">
+					<f:SimpleForm id="simpleFormChange" title="Task" editable="true" class="editableForm sapUiSmallMarginTopBottom">
+						<f:content>
+							<Label required="true" text="{i18n>enterTaskDescription}"/>
+							<TextArea required="true" valueLiveUpdate="true" value="{task>/DESCRIPTION}" id="task-description" rows="4" placeholder="{i18n>taskDescription}"></TextArea>
+							<Label text="{i18n>address}"/>
+							<Input id="addressField" value="{task>ADDRESS}"/>	
+							</f:content>
+						</f:SimpleForm>
+						<core:Icon src="sap-icon://locate-me" tooltip="Current Location" press="getCurrentLocation"/>
+						<HBox id="create-service-map" fitContainer="true" justifyContent="SpaceAround"  alignItems="Center" alignContent="SpaceAround" height="50%" width="100%"></HBox>
+						<Toolbar class="sapUiMediumMarginTopBottom">
+							<ToolbarSpacer/>
+							<Button type="Accept" icon="sap-icon://save" text="{= ${task>/ID} === '' ? ${i18n>saveTask} : ${i18n>update}}" press="onCreate"></Button>
+							<Button type="Reject" icon="sap-icon://cancel" text="{i18n>cancel}" press="navBack"></Button>
+						</Toolbar>
+					</content>
+				</Page>
+			</pages>
+		</App>
+	</mvc:View>

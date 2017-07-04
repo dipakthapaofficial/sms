@@ -1,0 +1,10 @@
+service  { 
+
+   "sms.model::TASK_DETAILS" as "TaskDetails"                  // Table or View  
+   key  ("ID");                             // Optional key relevant for view
+        
+}
+
+settings {
+    metadata cache-control "max-age= 604800";
+}  

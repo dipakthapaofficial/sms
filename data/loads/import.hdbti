@@ -1,0 +1,40 @@
+// To define a table import from a CSV file to a table you can use the following code.
+// In the example the CSV files should exist in sample.test package 
+// The number of table columns and their types must match the number of CSV columns and their types. 
+
+import = 
+        [
+            {
+                cdstable = "sms.data::SR.TaskStatus";// Target CDS table
+                file = "sms.data.loads:taskStatus.csv";          // Source CSV file
+                header = true;  
+                useHeaderNames = true;                         // CSV file does not include a header first line
+            },
+            {
+                cdstable = "sms.data::SR.ServiceType";
+                file = "sms.data.loads:serviceType.csv";          
+                header = true;  
+                useHeaderNames = true;                         
+            },
+            {
+                cdstable = "sms.data::SR.ServiceCategory";
+                file = "sms.data.loads:serviceCategory.csv";          
+                header = true;  
+                useHeaderNames = true;                         
+            }
+//            {
+//                hdbtable = "sample.test::MY_TABLE1";     // Target repository table
+//                file = "sample.test:mydata1.csv";        
+//                header = false;                          
+//                delimField = ";";                        
+//            }
+//
+//           ,
+//           {
+//               table = "MY_TABLE2";                    // Target catalog table
+//               schema = "<MY_SAMPLE_SCHEMA>";
+//               file = "sample.test:mydata2.csv";     
+//               header = false;                       
+//               delimField = ";";                     
+//           }
+         ];

@@ -1,0 +1,90 @@
+PROCEDURE "SERVICE_MANAGEMENT_SYSTEM"."__empty___sms.procedure::srUpdate" (
+	IN sr_details "SERVICE_MANAGEMENT_SYSTEM"."sms.data::Procedure.SR",
+	OUT error "SERVICE_MANAGEMENT_SYSTEM"."sms.data::Procedure.errors"
+ ) 
+	LANGUAGE SQLSCRIPT
+	SQL SECURITY INVOKER AS
+	--DEFAULT SCHEMA <default_schema_name>
+BEGIN
+/***************************** 
+	Write your procedure logic 
+ *****************************/
+ DECLARE lv_task INTEGER;
+ DECLARE lv_desription STRING;
+ DECLARE lv_status_id INTEGER;
+ DECLARE lv_service_type INTEGER;
+ DECLARE lv_customer_id INTEGER;
+ DECLARE lv_service_category INTEGER;
+ DECLARE lv_task_requested_data DATE;
+ DECLARE lv_country STRING;
+ DECLARE lv_street_name STRING;
+ DECLARE lv_street_num STRING;
+ DECLARE lv_state STRING;
+ DECLARE lv_region STRING;
+ DECLARE lv_apartment STRING;
+ DECLARE lv_latitude DOUBLE;
+ DECLARE lv_longitude DOUBLE;
+ DECLARE lv_point ST_POINT;
+ DECLARE lv_location INTEGER;
+ DECLARE lv_is_active BOOLEAN;
+ 
+ SELECT DESCRIPTION,STATUS_ID,SERVICE_TYPE_ID, CUSTOMER_ID, SERVICE_CATEGORY_ID,
+ 	TASK_REQUESTED_DATE, COUNTRY, STREET_NAME, STREET_NUM, STATE, REGION, APARTMENT, LATITUDE,
+ 	LONGITUDE, POINT
+     INTO lv_desription,  
+          lv_status_id,lv_service_type,lv_customer_id, lv_service_category, lv_task_requested_data,
+          lv_country, lv_street_name, lv_street_num, lv_state, lv_region, lv_apartment, lv_latitude,
+          lv_longitude, lv_point
+                      FROM :sr_details;
+ 
+ IF :lv_point = '' THEN
+ 	ex_error = SELECT 500 AS http_status_code, 
+               'Invalid Location Date ' || lv_point AS error_message, 
+                     'Location Data must not be empty' AS detail FROM dummy;
+ 
+ ELSEIF :lv_desription = '' THEN
+ 	ex_error = SELECT 500 AS http_status_code, 
+               'Invalid Service Request ' || lv_desription AS error_message, 
+                     'Service Request should have service details.' AS detail FROM dummy;
+ ELSE
+ 
+	 SELECT ID INTO lv_location FROM "SERVICE_MANAGEMENT_SYSTEM"."sms.data::SR.Location" where POINT = lv_point;
+	 
+	 IF :lv_location = '' THEN
+	 	INSERT INTO "sms.data::SR.Location"
+	             values ("sms.data:locationId".NEXTVAL, lv_country, lv_street_name, lv_street_num, lv_state, lv_region, lv_apartment, lv_latitude,
+	          lv_longitude, lv_point); 
+	 END IF;
+	 
+	 IF :lv_status_id = '' THEN
+	 	SELECT ID INTO lv_status_id FROM "SERVICE_MANAGEMENT_SYSTEM"."sms.data::SR.TaskStatus" WHERE STATUS = 'Requested';
+	 END IF;
+	 
+	 IF :lv_service_type = '' THEN
+	 	SELECT ID INTO lv_status_id FROM "SERVICE_MANAGEMENT_SYSTEM"."sms.data::SR.ServiceType" WHERE ID = '2';
+	 END IF;
+	 
+	 IF :lv_service_category = '' THEN
+	 	SELECT ID INTO lv_service_category FROM "SERVICE_MANAGEMENT_SYSTEM"."sms.data::SR.ServiceCategory" WHERE ID = 1;
+	 END IF;
+	 
+	 /*
+	 if :lv_is_active = '' THEN
+	 	SELECT :lv_is_active as true FROM DUMMY;
+	 END if;
+	*/	
+	 /*
+	 INSERT INTO "sms.data::SR.Location"
+	             values ("sms.data:taskId".NEXTVAL, lv_desription,  
+	          lv_status_id, lv_location, lv_service_type,lv_customer_id, lv_service_category, lv_task_requested_data, 
+	          lv_created_date, lv_modified_date, lv_is_active);  
+	  */
+	  UPDATE "sms.data::SR.Task" SET DESCRIPTION=lv_description, STATUS_ID=lv_status,
+	  	LOCATION_ID=lv_location, SERVICE_TYPE_ID=lv_service_type, CUSTOMER_ID=lv_customer_id,
+	  	SERVICE_CATEGORY_ID=lv_service_category, TASK_REQUESTED_DATE=lv_task_requested_data,
+		MODIFIED_DATE=now(), IS_ACTIVE=lv_is_active 	
+	   WHERE ID = lv_task;
+ END IF;
+ 
+ 
+END;

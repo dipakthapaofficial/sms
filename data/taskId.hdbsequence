@@ -1,0 +1,18 @@
+// To define an HDB Sequence, you can use the following code.
+// In the example below a schema and table/view should exist in sample.test package
+
+schema= "SERVICE_MANAGEMENT_SYSTEM";
+
+increment_by = 1;      //  -1 for descending
+
+start_with = 1;
+
+maxvalue= 99999999;  
+// nomaxvalue=true;    // used in case maxvalue is not defined       
+
+minvalue= 1;           // can be used for descending
+//nominvalue=true;     // used in case minvalue is not defined
+
+cycles= false;         // when reaching max/min value 
+
+depends_on_table = "sms.data::SR.Task";   // depends_on refers to the table in the reset_by clause

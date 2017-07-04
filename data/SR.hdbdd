@@ -1,0 +1,76 @@
+namespace sms.data;
+
+@Schema: 'SERVICE_MANAGEMENT_SYSTEM'
+context SR {
+
+    @Catalog.tableType : #COLUMN 
+    Entity Task {
+        key ID: Integer;
+        DESCRIPTION: String(500);
+		STATUS_ID: Integer;
+		LOCATION_ID: Integer;
+		SERVICE_TYPE_ID: Integer;
+		CUSTOMER_ID: Integer;
+		SERVICE_CATEGORY_ID: Integer;
+		TASK_REQUESTED_DATE: LocalDate;
+		CREATED_DATE: UTCTimestamp;
+		MODIFIED_DATE: UTCTimestamp;
+        LOCATION: Association[1] to Location on LOCATION.ID = LOCATION_ID;
+    };
+   	
+   	
+	@Catalog.tableType:#COLUMN
+	Entity Photo {
+		key ID: Integer;
+		PHOTO_URL: String(255);
+		TASK_ID: Integer;
+		CREATED_DATE: UTCTimestamp;
+	}
+   	
+   	@Catalog.tableType : #COLUMN 
+    Entity TaskStatus {
+        key ID: Integer;
+		STATUS: String(30);        
+    };
+   	 
+    @Catalog.tableType : #COLUMN 
+    Entity Location {
+        key ID: Integer;
+		COUNTRY: String(50);
+		STREET_NAME: String(100);
+		STREET_NUM: String(5);
+		STATE: String(50);
+		REGION: String(50);
+		APARTMENT: String(50);
+		ADDRESS: String(200);
+        LATITUDE: Double;
+        LONGITUDE: Double; 
+        POINT: hana.ST_POINT;
+        TASKS: Association[*] to Task on TASKS.LOCATION_ID = ID;
+    };
+    
+    @Catalog.tableType:#COLUMN
+	Entity ServiceCategory {
+		key ID: Integer;
+		DESCRIPTION: String(50);
+		PARENT_ID: Integer;
+		parent: Association[1] to ServiceCategory on parent.ID = PARENT_ID;
+		children: Association[*] to ServiceCategory on children.PARENT_ID = ID;
+	};
+    
+    @Catalog.tableType: #COLUMN
+	Entity TaskComment {
+		key ID: Integer;
+		TASK_ID: Integer;
+		USER_ID: String(20);
+		COMMENT: String(500);
+		CREATED_DATE: UTCTimestamp;
+	};
+    
+    @Catalog.tableType: #COLUMN
+    Entity ServiceType {
+    	key ID: Integer;
+		TYPE: String(30);    
+    }
+    
+};

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="TASK_DETAILS" applyPrivilegeType="ANALYTIC_PRIVILEGE" checkAnalyticPrivileges="true" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="internal" dimensionType="Standard">
+  <origin/>
+  <descriptions defaultDescription="TASK_DETAILS"/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <attributes>
+    <attribute id="ID" key="true" order="1" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="ID"/>
+    </attribute>
+    <attribute id="TASK_STATUS_ID" order="2" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TASK_STATUS_ID"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="STATUS_ID"/>
+    </attribute>
+    <attribute id="TASK_STATUS" order="3" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TASK_STATUS"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.TaskStatus" columnName="STATUS"/>
+    </attribute>
+    <attribute id="TASK_DESCRIPTION" order="4" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TASK_DESCRIPTION"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="DESCRIPTION"/>
+    </attribute>
+    <attribute id="LOCATION_ID" order="5" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="LOCATION_ID"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="LOCATION_ID"/>
+    </attribute>
+    <attribute id="CUSTOMER_ID" order="6" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="CUSTOMER_ID"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="CUSTOMER_ID"/>
+    </attribute>
+    <attribute id="TASK_REQUESTED_DATE" order="7" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TASK_REQUESTED_DATE"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="TASK_REQUESTED_DATE"/>
+    </attribute>
+    <attribute id="CREATED_DATE" order="8" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="CREATED_DATE"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="CREATED_DATE"/>
+    </attribute>
+    <attribute id="MODIFIED_DATE" order="9" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="MODIFIED_DATE"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="MODIFIED_DATE"/>
+    </attribute>
+    <attribute id="SERVICE_TYPE_ID" order="10" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="SERVICE_TYPE_ID"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="SERVICE_TYPE_ID"/>
+    </attribute>
+    <attribute id="SERVICE_TYPE" order="11" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="TYPE"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.ServiceType" columnName="TYPE"/>
+    </attribute>
+    <attribute id="SERVICE_CATEGORY_ID" order="12" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="SERVICE_CATEGORY_ID"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task" columnName="SERVICE_CATEGORY_ID"/>
+    </attribute>
+    <attribute id="SERVICE_CATEGORY" order="13" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="DESCRIPTION"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.ServiceCategory" columnName="DESCRIPTION"/>
+    </attribute>
+    <attribute id="COUNTRY" order="14" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="STREET_NAME" order="15" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="STREET_NAME"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="STREET_NAME"/>
+    </attribute>
+    <attribute id="STREET_NUM" order="16" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="STREET_NUM"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="STREET_NUM"/>
+    </attribute>
+    <attribute id="REGION" order="17" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="REGION"/>
+    </attribute>
+    <attribute id="APARTMENT" order="18" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="APARTMENT"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="APARTMENT"/>
+    </attribute>
+    <attribute id="LATITUDE" order="19" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="LATITUDE"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="LATITUDE"/>
+    </attribute>
+    <attribute id="LONGITUDE" order="20" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="LONGITUDE"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="LONGITUDE"/>
+    </attribute>
+    <attribute id="ADDRESS" order="21" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="ADDRESS"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="ADDRESS"/>
+    </attribute>
+    <attribute id="STATE" order="22" attributeHierarchyActive="false" displayAttribute="false">
+      <descriptions defaultDescription="STATE"/>
+      <keyMapping schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location" columnName="STATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.ServiceCategory"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.ServiceType"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.TaskStatus"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.TaskStatus"/>
+        <rightTable schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task"/>
+        <leftColumns>
+          <columnName>ID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>STATUS_ID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.ServiceType"/>
+        <rightTable schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task"/>
+        <leftColumns>
+          <columnName>ID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>SERVICE_TYPE_ID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.ServiceCategory"/>
+        <rightTable schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task"/>
+        <leftColumns>
+          <columnName>ID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>SERVICE_CATEGORY_ID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+      <join>
+        <leftTable schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Task"/>
+        <rightTable schemaName="SERVICE_MANAGEMENT_SYSTEM" columnObjectName="sms.data::SR.Location"/>
+        <leftColumns>
+          <columnName>LOCATION_ID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>ID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_1" joinOperator="Equal" joinType="referential"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="sms.data::SR.Task" modelObjectNameSpace="SERVICE_MANAGEMENT_SYSTEM" modelObjectType="catalog">
+          <upperLeftCorner x="129" y="140"/>
+        </shape>
+        <shape modelObjectName="sms.data::SR.ServiceCategory" modelObjectNameSpace="SERVICE_MANAGEMENT_SYSTEM" modelObjectType="catalog">
+          <upperLeftCorner x="519" y="442"/>
+        </shape>
+        <shape modelObjectName="sms.data::SR.ServiceType" modelObjectNameSpace="SERVICE_MANAGEMENT_SYSTEM" modelObjectType="catalog">
+          <upperLeftCorner x="13" y="386"/>
+        </shape>
+        <shape modelObjectName="sms.data::SR.TaskStatus" modelObjectNameSpace="SERVICE_MANAGEMENT_SYSTEM" modelObjectType="catalog">
+          <upperLeftCorner x="199" y="8"/>
+        </shape>
+        <shape modelObjectName="sms.data::SR.Location" modelObjectNameSpace="SERVICE_MANAGEMENT_SYSTEM" modelObjectType="catalog">
+          <upperLeftCorner x="621" y="168"/>
+        </shape>
+        <shape modelObjectName="DataFoundation" modelObjectNameSpace="DataFoundation" modelObjectType="repository">
+          <upperLeftCorner x="40" y="85"/>
+          <rectangleSize height="0" width="0"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

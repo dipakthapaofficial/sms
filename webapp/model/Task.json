@@ -1,0 +1,19 @@
+{
+	"ID": "",
+	"DESCRIPTION": "",
+	"STATUS_ID": "",
+	"SERVICE_TYPE_ID": "",
+	"CUSTOMER_ID": "",
+	"SERVICE_CATEGORY_ID": "",
+	"TASK_REQUESTED_DATE": "",
+	"COUNTRY": "",
+	"STREET_NAME": "",
+	"STREET_NUM": "",
+	"STATE": "",
+	"REGION": "",
+	"APARTMENT": "",
+	"LATITUDE": "",
+	"LONGITUDE": "",
+	"LOCATION_ID":"",
+	"ADDRESS":""
+}

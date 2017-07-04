@@ -1,0 +1,8 @@
+.sapUiIcon.sapUiIconMirrorInRTL.sapUiIconPointer {
+	float: right;
+	position:absolute;
+	bottom: 200px;
+	right: 10px;
+	z-index: 1000;
+	font-size: 40px;
+}
